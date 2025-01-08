@@ -7,26 +7,38 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jquery cdn -->
     <title>Práctica JQuery y JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@latest/webfonts/Hack-Regular.woff2">
     <style>
+        body {
+            font-family: 'Hack Nerd Font Mono', monospace;
+            background-color: #BBCEA8;
+            color: #0B0A07;
+        }
+
         .p1 {
             display: flex;
             align-items: center;
         }
 
         .container {
-            background-color: rgb(207, 207, 207);
+            background-color: #E3D87E;
             padding: 15px;
             display: flex;
             flex-wrap: wrap;
             gap: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(11, 10, 7, 0.2);
         }
 
         .image-container {
             text-align: center;
-            /* centro btns */
             width: calc(33.333% - 15px);
-            /* Ajusta el ancho para que haya 3 por fila */
             box-sizing: border-box;
+            background-color: #748067;
+            border-radius: 5px;
+            padding: 10px;
         }
 
         .image-container img {
@@ -41,14 +53,54 @@
         .button-group button {
             display: block;
             width: 100%;
+            margin-top: 5px;
+            padding: 10px;
+            background-color: #0B0A07;
+            color: #F0EC57;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button-group button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        #color_fondo, #anyadir_elemento, #resetear {
+            background-color: #748067;
+            color: #F0EC57;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #color_fondo:hover, #anyadir_elemento:hover, #resetear:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        a {
+            color: #748067;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 
 </head>
 
 <body>
+    
+    <a href="./index.html">Inicio</a>
     <h2>Formulario con Javascript</h2>
-    <a href="./index.html">Formulario con JQuery</a>
+    <a href="./jquery_form.html">Formulario con JQuery</a>
     <div class="p1">
         <p>Selecciona un color:</p>
         <input id="color_picker" type="color">
@@ -107,14 +159,10 @@
             </div>
         </div>
 
-
-
-
     </div>
 
 
     <script>
-
         //al cargar la página (CONTENIDO DEL DOM CARGADO) se ejecuta la función
         document.addEventListener('DOMContentLoaded', function () {
 
@@ -218,14 +266,10 @@
 
             });
 
-
-
-
-
-
         });
     </script>
 
 </body>
 
 </html>
+

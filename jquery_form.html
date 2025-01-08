@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jquery cdn -->
+        <title>Práctica JQuery y JS</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@latest/webfonts/Hack-Regular.woff2">
+        <style>
+            body {
+                font-family: 'Hack Nerd Font Mono', monospace;
+                background-color: #BBCEA8;
+                color: #0B0A07;
+            }
+    
+            .p1 {
+               display: flex;
+               align-items: center;
+            }
+    
+            .container{
+                background-color: #E3D87E;
+                padding: 15px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                border-radius: 10px;
+                box-shadow: 0 0 15px rgba(11, 10, 7, 0.2);
+            }
+    
+            .image-container {
+                text-align: center;
+                width: calc(33.333% - 15px);
+                box-sizing: border-box;
+                background-color: #748067;
+                border-radius: 5px;
+                padding: 10px;
+            }
+    
+            .image-container img {
+                max-width: 100%;
+                height: auto;
+            }
+    
+            .button-group {
+                margin-top: 10px;
+            }
+    
+            .button-group button{
+                display: block;
+                width: 100%;
+                margin-top: 5px;
+                padding: 10px;
+                background-color: #0B0A07;
+                color: #F0EC57;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+    
+            .button-group button:hover {
+                opacity: 0.9;
+                transform: translateY(-2px);
+            }
+    
+            #color_fondo, #anyadir_elemento, #resetear {
+                background-color: #748067;
+                color: #F0EC57;
+                border: none;
+                padding: 10px 20px;
+                margin: 10px 5px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+    
+            #color_fondo:hover, #anyadir_elemento:hover, #resetear:hover {
+                opacity: 0.9;
+                transform: translateY(-2px);
+            }
+    
+            a {
+                color: #748067;
+                text-decoration: none;
+            }
+    
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    
+    </head>
+    <body>
+
+        <a href="./index.html">Inicio</a>
+        <h2>Formulario con JQuery</h2>
+        <a href="./js_form.html">Formulario con Javascript</a>
+        <div class="p1">
+            <p>Selecciona un color:</p>
+            <input id="color_picker" type="color">        
+        </div>
+    
+        <div>
+            <button id="color_fondo" >Cambiar color de fondo</button>
+            <button id="anyadir_elemento">Añadir elemento</button>
+            <button id="resetear">Reset</button>
+        </div>
+    
+        <h3>Elementos</h3>
+    
+        <div class="container">
+        
+            <div class="image-container">
+                <img src="./images/fighter.png" alt="Descripción de la imagen">
+                <div class="button-group">
+                    <button id="cambiar">Cambiar</button>
+                    <button class="eliminar">Borrar</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="./images/fighter.png" alt="Descripción de la imagen">
+                <div class="button-group">
+                    <button id="cambiar">Cambiar</button>
+                    <button class="eliminar">Borrar</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="./images/fighter.png" alt="Descripción de la imagen">
+                <div class="button-group">
+                    <button id="cambiar">Cambiar</button>
+                    <button class="eliminar">Borrar</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="./images/fighter.png" alt="Descripción de la imagen">
+                <div class="button-group">
+                    <button id="cambiar">Cambiar</button>
+                    <button class="eliminar">Borrar</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="./images/fighter.png" alt="Descripción de la imagen">
+                <div class="button-group">
+                    <button id="cambiar">Cambiar</button>
+                    <button class="eliminar">Borrar</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="./images/fighter.png" alt="Descripción de la imagen">
+                <div class="button-group">
+                    <button id="cambiar">Cambiar</button>
+                    <button class="eliminar">Borrar</button>
+                </div>
+            </div>
+        </div>
+
+
+    <script>
+
+        // Cambiar color de fondo de todas las imagenes 
+        $(document).ready(function(){
+            //selecciono el boton y agrego el evento
+            $("#color_fondo").click(function(){
+                //se incorpora la logica
+                $(".image-container").css("background-color", $("#color_picker").val()); //JQuery.css(propertyName: string, value: string | number): JQuery
+            });
+        });
+
+        
+        //Resetear elementos al estado inicial
+        $("#resetear").click(function(){
+            //recargo la página
+            location.reload(); 
+        })
+
+        //--aynadir elemento
+        //recupero el elemento y le agrego evento
+        $("#anyadir_elemento").click(function(){
+
+            //inicializo la variable con el valor correspondiente a un nuevo elemento, concatenando strings para escapar comillas
+            var elemento = '<div class="image-container">' +
+                           '<img src="./images/fighter.png" alt="Descripción de la imagen">' +
+                           '<div class="button-group">' +
+                           '<button id="cambiar">Cambiar</button>' +
+                           '<button class="eliminar">Borrar</button>' +
+                           '</div>' +
+                           '</div>';
+
+            //recupero el elemento padre y le indexo el nuevo elemento
+            $(".container").append(elemento);
+
+            //insto a respetar el bg-color seleccionado si existe
+
+            //almaceno el color de fondo de las imagenes
+            var color = $(".image-container").css("background-color");
+
+            //aplico el color de fondo, en realidad a todos los elementos
+            $(".image-container").css("background-color", color);
+
+            //trabajar con el ultimo elemento añadido
+            // $(".image-container").last().css("background-color", color);
+        
+        });
+
+
+        // --Elimino el elemento del dom
+        // $(".eliminar").click(function(){}); agrega el evento explicitamente a todos los botones con la clase, pero si se agregan nuevos elementos no se les asigna el evento
+
+        //Agrego el evento al documento y en especifico a los elementos con la clase eliminar (delegación de eventos)
+        $(document).on('click', '.eliminar', function(){
+
+            //a partir del elemento en el que se produce el evento, navego nodos para seleccionar el elemento (image-container) y eliminarlo
+            $(this).parent().parent().remove();
+        });
+
+        //Cambiar imagen - función para obtener una ruta de imagen al azar
+      
+        // Array con rutas de imágenes
+        var imageRoutes = [
+            './images/fighter.png',
+            './images/fighter-2.png',
+            './images/fighter-3.png',
+            './images/xwing.png',
+            './images/tie-fighter.png',
+            './images/sukoi.png'
+        ];
+        
+            //getRandomImage
+            // Descripción: Esta función selecciona una ruta de imagen aleatoria del array `imageRoutes`, generando un numero aleatorio en el rango del array y accediendo al valor en el indice obtenido.
+            // Retorna: Una cadena que representa la ruta a una imagen seleccionada aleatoriamente del array `imageRoutes`.
+   
+        
+        function getRandomImage() {
+            var randomIndex = Math.floor(Math.random() * imageRoutes.length);
+            
+            return imageRoutes[randomIndex];
+        }
+
+        // Cambiar imagen al azar
+        $(document).on('click', '#cambiar', function(){
+            $(this).parent().parent().find('img').attr('src', getRandomImage());
+        });
+
+    </script>
+</body>
+</html>
