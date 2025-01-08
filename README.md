@@ -24,7 +24,7 @@ Este repositorio contiene los proyectos desarrollados como parte de la **Prácti
 - **JavaScript**  
 
 ## **Enlaces de interés**  
-- [Página en Netlify](#)  
+- [Página en Netlify]((https://diw-practica-8.netlify.app/))  
 - [GitHub Pages](https://neusware.github.io/DIW---Tema-9/)  
 
 ## **Estructura del proyecto**  
