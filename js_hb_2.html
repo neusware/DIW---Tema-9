@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.3.0/web/hack.css">
+    <title>JQuery Human Benchmark</title>
+
+    <style>
+        * {
+            font-family: 'Hack', monospace;
+        }
+        .main_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #6d92d6;
+            color: white;
+        }
+
+
+        h3 {
+            padding: 10px 20px;
+            background-color: #ebd34d;
+            color: #000;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main_container">
+
+        <h1>Test de tiempo de reacción</h1>
+        <h3>Click en la pantalla para comenzar</h3>
+
+    </div>
+
+
+
+
+
+
+
+
+    <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        //selecciono el div
+        const div = document.querySelector('.main_container');
+        //declaro las variables para display tiempo 
+        let tiempoInicio, tiempoFin, Timeout;
+
+        //función para iniciar el test
+        function iniciar() {
+            
+            //cambio el contenido del div
+            div.innerHTML = '<h1>Espera al verde para clickar</h1><h2>...</h2>';
+            div.style.backgroundColor = '#f73838';
+
+            // Tiempo al azar entre 2 y 5 segundos
+            const tiempoAleatorio = Math.floor(Math.random() * 3000) + 2000;
+
+            //ejecución tras el tiempo calculado (2o parámetro), almaceno el el timeout para poder limpiarlo
+            Timeout = setTimeout(() => {
+
+                //cambio el contenido del div
+                div.innerHTML = '<h1>¡Click ahora!</h1><h2>:3</h2>';
+                div.style.backgroundColor = '#38f738';
+
+                //almaceno el tiempo de inicio a partir de Date
+                tiempoInicio = Date.now();
+
+                //añado el event listener para el click y ejecuto la función que calcula el tiempo de reacción y modifica el div
+                div.addEventListener('click', manejarTiempoReaccion);
+            }, tiempoAleatorio);
+        }
+
+        //función para manejar el tiempo de reacción (4 - pantalla final )
+        function manejarTiempoReaccion() {
+
+            //se ejecuta cuando se hace click, guardo el tiempo de fin y calculo el tiempo de reacción
+            tiempoFin = Date.now();
+            const tiempoReaccion = tiempoFin - tiempoInicio;
+
+            //cambio el contenido del div, display del tiempo
+            div.innerHTML = `<h1>Tiempo de reacción: ${tiempoReaccion}ms</h1><h3>Click en la pantalla para comenzar de nuevo</h3>`;
+            div.style.backgroundColor = '#6d92d6';
+
+            // Remover el event listener para evitar múltiples cálculos (ln. 87)
+            div.removeEventListener('click', manejarTiempoReaccion);
+            
+            //! Múltiples eventos click en el mismo elemento, se maneja refactorizando el código en funciones y añadiendo/eliminando los eventos con la correspondiente función
+
+            // Añadir event listener para reiniciar el test
+            div.addEventListener('click', reiniciarTest);
+        }
+
+        //función para reiniciar el test
+        function reiniciarTest() {
+
+            //elimina el evento que lanza este método
+            div.removeEventListener('click', reiniciarTest);
+            //ejecuta la función
+            iniciar();
+        }
+
+        //evento click para iniciar el test
+        div.addEventListener('click', function clickInicial() {
+            
+            //limpio el timeout si existe
+            clearTimeout(Timeout);
+            //ejecuto la función iniciar
+            iniciar();
+            //elimino el evento que lanza este código
+            div.removeEventListener('click', clickInicial);
+        });
+    });
+
+    // todo boton para inicio benchmark y controlar click antes de tiempo
+
+        /*         document.addEventListener('DOMContentLoaded', () => {
+        
+        
+                    const div = document.querySelector('.main_container');
+        
+                    div.addEventListener('click', () => {
+        
+                        div.innerHTML = '<h1>Espera al verde para clickar</h1><h3>...</h3>';
+                        div.style.backgroundColor = '#f73838';
+                        div.className = 'reaction_test';
+        
+        
+                
+        
+                    const tiempo_aleatorio = Math.floor(Math.random() * 5000) + 1000;
+        
+                    //hago que la ejecución se pause durante el tiempo aleatorio calculado, setTimeout por parámetro una función y un tiempo en milisegundos
+                    const div_2 = document.querySelector('.reaction_test');
+                    setTimeout(() => {
+        
+                        
+                        div_2.innerHTML = '<h1>Click!</h1>';
+                        div_2.style.backgroundColor = '#3cf738';
+        
+                        const inicio = Date.now();
+        
+                        div_2.addEventListener('click', () => {
+        
+                            const fin = Date.now();
+                            const tiempo_reaccion = fin - inicio;
+        
+                            div_2.innerHTML = `<h1>Tiempo de reacción: ${tiempo_reaccion}ms</h1>`;
+        
+                            div_2.style.backgroundColor = '#6d92d6';
+                            div_2.className = 'main_container';
+                        })
+        
+                    }, tiempo_aleatorio);
+        
+                    //si vuelve a hacer click en la pantalla, se reinicia el juego
+        
+        
+        
+        
+        
+        
+                })
+        
+            }) */
+
+
+    </script>
+</body>
+
+</html>
