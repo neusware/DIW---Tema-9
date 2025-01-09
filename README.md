@@ -20,16 +20,16 @@ Este repositorio contiene los proyectos desarrollados como parte de la **Prácti
 ## **Tecnologías utilizadas**  
 - **HTML**  
 - **CSS**  
-- **jQuery**  
+- **JQuery**  
 - **JavaScript**  
 
 ## **Enlaces de interés**  
-- [Página en Netlify]((https://diw-practica-8.netlify.app/))  
+- [Página en Netlify](https://diw-practica-8.netlify.app/)  
 - [GitHub Pages](https://neusware.github.io/DIW---Tema-9/)  
 
 ## **Estructura del proyecto**  
-- **index.html**: Página de inicio del proyecto
-- **jquert_form.html**: Página para la gestión de elementos con JQuery
-- **js_form.html**: Página para la gestión de elementos con Javascript
-- **jquery_hb.html** - **jquery_hb_2.html**: Página de simulación Human Benchmark con JQuery
-- **js_hb.html** - **js_hb_2.html**: Página de simulación Human Benchmark con Javascript
+- ***index.html***: Página de inicio del proyecto
+- ***jquert_form.html***: Página para la gestión de elementos con JQuery
+- ***js_form.html***: Página para la gestión de elementos con Javascript
+- ***jquery_hb.html*** - ***jquery_hb_2.html***: Página de simulación Human Benchmark con JQuery
+- ***js_hb.html*** - ***js_hb_2.html***: Página de simulación Human Benchmark con Javascript
