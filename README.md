@@ -31,5 +31,5 @@ Este repositorio contiene los proyectos desarrollados como parte de la **Prácti
 - **index.html**: Página de inicio del proyecto
 - **jquert_form.html**: Página para la gestión de elementos con JQuery
 - **js_form.html**: Página para la gestión de elementos con Javascript
-- **jquery_hb.html**: Página de simulación Human Benchmark con JQuery
-- **js_hb.html**: Página de simulación Human Benchmark con Javascript
+- **jquery_hb.html** - **jquery_hb_2.html**: Página de simulación Human Benchmark con JQuery
+- **js_hb.html** - **js_hb_2.html**: Página de simulación Human Benchmark con Javascript
