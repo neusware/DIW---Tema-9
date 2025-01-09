@@ -11,6 +11,7 @@
         * {
             font-family: 'Hack', monospace;
         }
+
         .main_container {
             display: flex;
             flex-direction: column;
@@ -35,6 +36,7 @@
 </head>
 
 <body>
+    
     <div class="main_container">
 
         <h1>Test de tiempo de reacción</h1>
@@ -42,89 +44,82 @@
 
     </div>
 
-
-
-
-
-
-
-
     <script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        //selecciono el div
-        const div = document.querySelector('.main_container');
-        //declaro las variables para display tiempo 
-        let tiempoInicio, tiempoFin, Timeout;
+        document.addEventListener('DOMContentLoaded', () => {
 
-        //función para iniciar el test
-        function iniciar() {
-            
-            //cambio el contenido del div
-            div.innerHTML = '<h1>Espera al verde para clickar</h1><h2>...</h2>';
-            div.style.backgroundColor = '#f73838';
+            //selecciono el div
+            const div = document.querySelector('.main_container');
+            //declaro las variables para display tiempo 
+            let tiempoInicio, tiempoFin, Timeout;
 
-            // Tiempo al azar entre 2 y 5 segundos
-            const tiempoAleatorio = Math.floor(Math.random() * 3000) + 2000;
-
-            //ejecución tras el tiempo calculado (2o parámetro), almaceno el el timeout para poder limpiarlo
-            Timeout = setTimeout(() => {
+            //función para iniciar el test
+            function iniciar() {
 
                 //cambio el contenido del div
-                div.innerHTML = '<h1>¡Click ahora!</h1><h2>:3</h2>';
-                div.style.backgroundColor = '#38f738';
+                div.innerHTML = '<h1>Espera al verde para clickar</h1><h2>...</h2>';
+                div.style.backgroundColor = '#f73838';
 
-                //almaceno el tiempo de inicio a partir de Date
-                tiempoInicio = Date.now();
+                // Tiempo al azar entre 2 y 5 segundos
+                const tiempoAleatorio = Math.floor(Math.random() * 3000) + 2000;
 
-                //añado el event listener para el click y ejecuto la función que calcula el tiempo de reacción y modifica el div
-                div.addEventListener('click', manejarTiempoReaccion);
-            }, tiempoAleatorio);
-        }
+                //ejecución tras el tiempo calculado (2o parámetro), almaceno el el timeout para poder limpiarlo
+                Timeout = setTimeout(() => {
 
-        //función para manejar el tiempo de reacción (4 - pantalla final )
-        function manejarTiempoReaccion() {
+                    //cambio el contenido del div
+                    div.innerHTML = '<h1>¡Click ahora!</h1><h2>:3</h2>';
+                    div.style.backgroundColor = '#38f738';
 
-            //se ejecuta cuando se hace click, guardo el tiempo de fin y calculo el tiempo de reacción
-            tiempoFin = Date.now();
-            const tiempoReaccion = tiempoFin - tiempoInicio;
+                    //almaceno el tiempo de inicio a partir de Date
+                    tiempoInicio = Date.now();
 
-            //cambio el contenido del div, display del tiempo
-            div.innerHTML = `<h1>Tiempo de reacción: ${tiempoReaccion}ms</h1><h3>Click en la pantalla para comenzar de nuevo</h3>`;
-            div.style.backgroundColor = '#6d92d6';
+                    //añado el event listener para el click y ejecuto la función que calcula el tiempo de reacción y modifica el div
+                    div.addEventListener('click', manejarTiempoReaccion);
+                }, tiempoAleatorio);
+            }
 
-            // Remover el event listener para evitar múltiples cálculos (ln. 87)
-            div.removeEventListener('click', manejarTiempoReaccion);
-            
-            //! Múltiples eventos click en el mismo elemento, se maneja refactorizando el código en funciones y añadiendo/eliminando los eventos con la correspondiente función
+            //función para manejar el tiempo de reacción (4 - pantalla final )
+            function manejarTiempoReaccion() {
 
-            // Añadir event listener para reiniciar el test
-            div.addEventListener('click', reiniciarTest);
-        }
+                //se ejecuta cuando se hace click, guardo el tiempo de fin y calculo el tiempo de reacción
+                tiempoFin = Date.now();
+                const tiempoReaccion = tiempoFin - tiempoInicio;
 
-        //función para reiniciar el test
-        function reiniciarTest() {
+                //cambio el contenido del div, display del tiempo
+                div.innerHTML = `<h1>Tiempo de reacción: ${tiempoReaccion}ms</h1><h3>Click en la pantalla para comenzar de nuevo</h3>`;
+                div.style.backgroundColor = '#6d92d6';
 
-            //elimina el evento que lanza este método
-            div.removeEventListener('click', reiniciarTest);
-            //ejecuta la función
-            iniciar();
-        }
+                // Remover el event listener para evitar múltiples cálculos (ln. 87)
+                div.removeEventListener('click', manejarTiempoReaccion);
 
-        //evento click para iniciar el test
-        div.addEventListener('click', function clickInicial() {
-            
-            //limpio el timeout si existe
-            clearTimeout(Timeout);
-            //ejecuto la función iniciar
-            iniciar();
-            //elimino el evento que lanza este código
-            div.removeEventListener('click', clickInicial);
+                //! Múltiples eventos click en el mismo elemento, se maneja refactorizando el código en funciones y añadiendo/eliminando los eventos con la correspondiente función
+
+                // Añadir event listener para reiniciar el test
+                div.addEventListener('click', reiniciarTest);
+            }
+
+            //función para reiniciar el test
+            function reiniciarTest() {
+
+                //elimina el evento que lanza este método
+                div.removeEventListener('click', reiniciarTest);
+                //ejecuta la función
+                iniciar();
+            }
+
+            //evento click para iniciar el test
+            div.addEventListener('click', function clickInicial() {
+
+                //limpio el timeout si existe
+                clearTimeout(Timeout);
+                //ejecuto la función iniciar
+                iniciar();
+                //elimino el evento que lanza este código
+                div.removeEventListener('click', clickInicial);
+            });
         });
-    });
 
-    // todo boton para inicio benchmark y controlar click antes de tiempo
+        // todo boton para inicio benchmark y controlar click antes de tiempo
 
         /*         document.addEventListener('DOMContentLoaded', () => {
         
